@@ -6,13 +6,14 @@ namespace CLI.UI.ManageUsers;
 
 public class CreateUserView
 {
-    UserInMemoryRepository userRepository;
-    User user;
+    private readonly IUserRepository userRepository;
     
-    private async Task AddUserAsync(string name, string password)
+    private async Task AddUserAsync()
     {
-        // ...
-        User created = await userRepository.AddAsync(user);
-        // ...
+        string username = string.Empty;
+        Console.Write("Enter username: ");
+        username = Console.ReadLine();
+        await userRepository.AddAsync(new User{Username = username});
+        Console.WriteLine($"User {username} created!");
     }
 }
