@@ -10,3 +10,5 @@ ILikeRepository likeRepository = new LikeInMemoryRepository();
 
 CliApp cliApp = new CliApp(userRepository, commentRepository, postRepository, likeRepository);
 await cliApp.StartAsync();
+
+Console.WriteLine("CLI started");
