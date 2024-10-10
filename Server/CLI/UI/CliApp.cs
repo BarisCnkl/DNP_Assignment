@@ -1,4 +1,4 @@
-﻿using CLI.UI.ManagePosts;
+using CLI.UI.ManagePosts;
 using CLI.UI.ManageUsers;
 using RepositoryContracts;
 
