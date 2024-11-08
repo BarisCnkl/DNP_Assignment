@@ -45,6 +45,8 @@ public class CommentFileRepository : IcommentRepository
 
     public IQueryable<Comment> GetMany()
     {
-        throw new NotImplementedException();
+        string commentsAsJson = File.ReadAllTextAsync(filePath).Result;
+            List<Comment> comments = JsonSerializer.Deserialize<List<Comment>>(commentsAsJson)!;
+            return comments.AsQueryable();
     }
 }
