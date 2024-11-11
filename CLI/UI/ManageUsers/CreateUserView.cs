@@ -13,7 +13,7 @@ public class CreateUserView
         string username = string.Empty;
         Console.Write("Enter username: ");
         username = Console.ReadLine();
-        await userRepository.AddAsync(new User{Username = username});
+        //(FEJL HER!)await userRepository.AddAsync(new User{Username = username});
         Console.WriteLine($"User {username} created!");
     }
 }
