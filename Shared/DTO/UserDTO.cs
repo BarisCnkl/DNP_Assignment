@@ -1,7 +1,9 @@
 ﻿namespace ApiContracts;
 
-public class UserDto
+public class UserDTO
 {
     public string UserName { get; set; }
     public int Id { get; set; }
+   
+
 }

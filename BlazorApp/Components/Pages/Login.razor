@@ -1,0 +1,47 @@
+﻿@page "/login"  
+@using ApiContracts
+@using BlazorApp.Services
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+@inject SimpleAuthService SimpleAuthService
+
+<h3>Login</h3>
+
+<EditForm Model="loginRequest" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="userName">User Name</label>
+        <InputText id="userName" @bind-Value="loginRequest.UserName" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <InputText id="password" type="password" @bind-Value="loginRequest.Password" />
+    </div>
+
+    <button type="submit">Login</button>
+</EditForm>
+
+@code {
+private LoginRequest loginRequest = new LoginRequest();
+
+private async Task HandleLogin()
+{
+try
+{
+var userDto = await AuthService.LoginAsync(loginRequest.UserName, loginRequest.Password);
+
+// Store the logged-in user in SimpleAuthService
+SimpleAuthService.SetUser(userDto);
+
+// Redirect to the home page or any other page after login
+Navigation.NavigateTo("/home");
+}
+catch (Exception ex)
+{
+// Handle login failure (show error message)
+Console.WriteLine($"Login failed: {ex.Message}");
+}
+}
+}

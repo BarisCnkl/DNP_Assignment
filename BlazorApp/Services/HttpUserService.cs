@@ -12,7 +12,7 @@ public class HttpUserService : IUserService
         this.client = client;
     }
 
-    async Task<UserDto> IUserService.AddUserAsync(CreateUserDto request)
+    async Task<UserDTO> IUserService.AddUserAsync(CreateUserDto request)
     {
         HttpResponseMessage httpResponse = await client.PostAsJsonAsync("users", request);
         string response = await httpResponse.Content.ReadAsStringAsync();
@@ -20,7 +20,7 @@ public class HttpUserService : IUserService
         {
             throw new Exception(response);
         }
-        return JsonSerializer.Deserialize<UserDto>(response, new JsonSerializerOptions
+        return JsonSerializer.Deserialize<UserDTO>(response, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         })!;
@@ -43,7 +43,7 @@ public class HttpUserService : IUserService
     }
     
     // more methods...
-    public Task<UserDto> AddUserAsync(CreateUserDto request)
+    public Task<UserDTO> AddUserAsync(CreateUserDto request)
     {
         throw new NotImplementedException();
     }
